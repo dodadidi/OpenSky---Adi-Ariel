@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="CSS/styles.css" />
+  <title>User List</title>
+</head>
+
+<body>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"> 
+    <a class="navbar-brand" href="index.html">OpenSky</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="flightsList.html">Flights</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">My-Flights</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Likes</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+  <header>
+      <div class="top-cloud"><img src="images/cloud.png" alt="cloud-image"></div>
+      <h1>OpenSky</h1>
+      <h3>Find Your Next Trip</h3>
+      <!-- <p>🌤🛫✈🌤🌦⛱😎🌥</p> -->
+      <div class="bottom-cloud"><img src="images/cloud.png" alt="cloud-image"></div>
+    <div class="back">
+      <a href="./index.html"><br>&larr; Back</a>
+    </div>
+  </header>
+
+  <main>
+    <form>
+      <fieldset class="form-group">
+        <div class="row">
+      </fieldset>
+      <div class="form-group row">
+        <label for="inputDeparture_city" class="col-sm-2 col-form-label">Departue City</label>
+        <div class="col-sm-10">
+          <input type="Departure City" class="form-control" id="inputDeparture_city" placeholder="Departure City">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputLanding_city" class="col-sm-2 col-form-label">Landing City</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputLanding_city" placeholder="Landing City">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputStops" class="col-sm-2 col-form-label">Stops</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputStops" placeholder="Stops">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-10">
+          <button type="button" id="searchFlights" class="btn btn-primary">Search</button>
+        </div>
+      </div>
+    </form>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Flight Number</th>
+          <th scope="col">Departure Date:</th>
+          <!-- <th scope="col">Departure Time:</th> -->
+          <th scope="col">Departure City</th>
+          <th scope="col">Landing City</th>
+          <th scope="col">Company Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Stops</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+  <script src="JS/flight.js"></script>
+</body>
+
+</html>
