@@ -54,13 +54,20 @@ exports.flightDbController = {
         .catch(err => console.log(`Error getting the data from db: ${err}`));
     },
     updateFlight(req,res){
-      flight.updateMany({id:req.params.id},{first_name:req.body.first_name,last_name:req.body.last_name,departure_city:req.body.departure_city,stops:req.body.stops,color:req.body.color,landing_city:req.body.landing_city})
+      flight.updateOne({flight_number:req.params.flight_number},{departure_date:req.body.departure_date,landing_city:req.body.landing_city,company_name:req.body.company_name,price:req.body.price})
       .then(docs => { res.json(docs)})
       .catch(err => console.log(`Error updating flight from db: ${err}`));  
     },
+    // updateFlight(req,res){
+    //     flight.updateOne({id:req.params.id},{
+    //         $set: {...req.body}
+    //     })
+    //     .then(docs => { res.json(docs)})
+    //     .catch(err => console.log(`Error updating flight from db: ${err}`));
+    //   },
   deleteFlight(req,res){
     //flight.deleteMany({id:{$in: [1,3,5,7,9]}})
-    flight.deleteOne({id:req.params.flight_number})
+    flight.deleteOne({flight_number:req.params.flight_number})
     .then(docs => { res.json(docs)})
       .catch(err => console.log(`Error deleting flight from db: ${err}`));  
   },
