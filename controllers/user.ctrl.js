@@ -30,7 +30,7 @@ exports.userDbController = {
         .catch(err => console.log(`Error getting the data from db: ${err}`));
     },
     updateUser(req,res){
-      user.updateOne({id:req.params.id},{first_name:req.body.first_name,last_name:req.body.last_name,email:req.body.email})
+      user.updateMany({id:req.params.id},{first_name:req.body.first_name,last_name:req.body.last_name,email:req.body.email,gender:req.body.gender,color:req.body.color,job:req.body.job})
       .then(docs => { res.json(docs)})
       .catch(err => console.log(`Error updating user from db: ${err}`));  
     },
