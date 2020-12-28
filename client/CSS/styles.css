@@ -21,7 +21,7 @@ h3{
 	font-size: 30px;
 	/* font-size: 200%; */
 }
-	
+
 a{
 	color:#440047;
 }
@@ -70,12 +70,16 @@ header {
 	position:absolute;
 	left: 300px;
 	top:210px;
+
 }
 .top-cloud{
 	position:absolute;
 	right: 300px;
 	top:100px;
+
 }
+
+
 
 
 
