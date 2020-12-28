@@ -20,7 +20,7 @@ function recreateTable(flights) {
     if (flightsLen) {
         $('table').append('<tbody></tbody>');
         for (let i = 0; i < flightsLen; i++) {
-            let tableRow = "<tr><td>$flight_number</td><td>$departure_date</td><td>$departure_city</td><td>$landing_city</td><td>$company_name</td><td>$price</td><td>$stops</td></tr>";
+            let tableRow = "<tr><td>$flight_number</td><td>$departure_date</td><td>$departure_city</td><td>$landing_city</td><td>$company_name</td><td>$price</td><td>$stops</td><td>Feedback</td><td>*Buy*</td></tr>";
             tableRow = tableRow.replace("$flight_number", flights[i].flight_number);
             tableRow = tableRow.replace("$departure_date", flights[i].departure_date);
             tableRow = tableRow.replace("$departure_city", flights[i].departure_city);
@@ -28,6 +28,8 @@ function recreateTable(flights) {
             tableRow = tableRow.replace("$company_name", flights[i].company_name);
             tableRow = tableRow.replace("$price", flights[i].price);
             tableRow = tableRow.replace("$stops", flights[i].stops);
+            //"$action", <a class="buy" title="buy" data-toggle="tooltip"><i class="bi bi-cash-stack">&#xE254;</i></a>;
+            //"$action", <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>;
             $("tbody").append(tableRow);
             $('table tr:last').css("color", flights[i].color); 
         }
