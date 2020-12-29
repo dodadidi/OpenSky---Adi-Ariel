@@ -13,7 +13,6 @@ exports.feedbackDbController = {
             }
             else{res.status(404).send("Error: wrong key");}
         }
-        //findFeedbacks.sort({published_date: -1})
         findFeedbacks.find({})
         .then(docs => { res.json(docs)})
         .catch(err => console.log(`Error getting the data from db: ${err}`));
@@ -33,11 +32,9 @@ exports.feedbackDbController = {
             "feedback": req.body.feedback,
             "rating": req.body.rating
         });
-    
         newFeedback.save()
             .then(docs => { res.json(docs) })
             .catch(err => console.log(`Error getting the data from DB: ${err}`));
-    
     },
     
     updateOneFeedback(req,res) {
@@ -46,13 +43,12 @@ exports.feedbackDbController = {
             .catch(err => console.log(`Error getting the data from DB: ${err}`));
     },
    
-
   deleteFeedback(req,res){
     //feedback.deleteMany({id:{$in: [1,3,5,7,9]}})
     feedback.deleteOne({id:req.params.id})
     .then(docs => { res.json(docs)})
     .catch(err => console.log(`Error deleting feedback from db: ${err}`));  
   }
-
 }
+
 

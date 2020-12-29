@@ -20,14 +20,12 @@ exports.flightDbController = {
             
             else{res.status(404).send("Error: wrong key");}
         }
-        // findFlights.sort({stops: -1})
         findFlights.find({})
         .then(docs => { res.json(docs)})
         .catch(err => console.log(`Error getting the data from db: ${err}`));  
     },
     addFlight(req,res){
         const newFlight = new flight({
-            //check, validations
             "flight_number": req.body.flight_number,
             "departure_date": req.body.departure_date,
             "time": req.body.time,
