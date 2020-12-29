@@ -5,10 +5,10 @@ exports.flightDbController = {
         const keys = Object.keys(req.query);
         const findFlights = flight.find({});
         for(let i = 0 ; i < keys.length; i++){
-            // if(keys[i] == 'departure_date') {
-            //     findFlights.find({departure_date:{$gte: req.query.departure_date}});
-            // }
-            if(keys[i] == 'departure_city') {
+            if(keys[i] == 'departure_date') {
+                findFlights.find({departure_date:req.query.departure_date});
+            }
+            else if(keys[i] == 'departure_city') {
                 findFlights.find({departure_city:req.query.departure_city});
             }
             else if(keys[i] == 'landing_city') {
@@ -17,9 +17,11 @@ exports.flightDbController = {
             else if(keys[i] == 'stops'){
                 findFlights.find({stops: {$lte: req.query.stops}});
             }
+            
             else{res.status(404).send("Error: wrong key");}
         }
-        findFlights
+        // findFlights.sort({stops: -1})
+        findFlights.find({})
         .then(docs => { res.json(docs)})
         .catch(err => console.log(`Error getting the data from db: ${err}`));  
     },
