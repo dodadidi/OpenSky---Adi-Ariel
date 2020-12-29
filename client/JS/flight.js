@@ -19,19 +19,55 @@ function recreateTable(flights) {
     if (flightsLen) {
         $('table').append('<tbody></tbody>');
         for (let i = 0; i < flightsLen; i++) {
-            let tableRow = "<tr><td>$flight_number</td><td>$departure_date</td><td>$departure_city</td><td>$landing_city</td><td>$company_name</td><td>$price</td><td>$stops</td><td><a href =./feedbacksList.html>Feedback</a></td><td onclick=\"window.confirm('Are you sure you want to purchase this flight?')\">*Buy*</td></tr>";
-            tableRow = tableRow.replace("$flight_number", flights[i].flight_number);
-            tableRow = tableRow.replace("$departure_date", flights[i].departure_date);
-            tableRow = tableRow.replace("$departure_city", flights[i].departure_city);
-            tableRow = tableRow.replace("$landing_city", flights[i].landing_city);
-            tableRow = tableRow.replace("$company_name", flights[i].company_name);
-            tableRow = tableRow.replace("$price", flights[i].price);
-            tableRow = tableRow.replace("$stops", flights[i].stops);
+            let tableRow = "<tr>"
+            tableRow += "<td>" + flights[i].flight_number + "</td>";
+            // tableRow += "<td>" + moment(flights[i].departure_date).format('DD/MM/YYYY') + "</td>";
+            tableRow += "<td>" + flights[i].departure_date+"</td>";
+            tableRow += "<td>" + flights[i].time+"</td>";
+            tableRow += "<td>" + flights[i].departure_city + "</td>";
+            tableRow += "<td>" + flights[i].landing_city + "</td>";
+            tableRow += "<td>" + flights[i].company_name + "</td>";
+            tableRow += "<td>" + flights[i].price + "</td>";
+            tableRow += "<td>" + flights[i].stops + "</td>";
+            tableRow += "<td><a href =./feedbacksList.html>Feedback</a></td>";
+            // tableRow += "<td><a href =./feedbacksList.html?company_name=" + flights[i].company_name + ">Feedback</a></td>";
+            tableRow += "<td class='pointer' onclick='buyFlight(" + JSON.stringify(flights[i]) + ")'>Buy</td>";
+            tableRow += "<td><span class='pointer' id='like-" + flights[i].flight_number + "' onclick='likeCLicked(" + flights[i].flight_number + ")'><i class='far fa-heart'></i></span></td>"
+            tableRow += "</tr>";
             $("tbody").append(tableRow);
 
         }
     }
 }
+
+function likeCLicked(flightNumber) {
+
+    //Need to check the status of the like from the DB
+    // if(like) {
+
+    // } else {
+
+    // }
+
+    $("#like-" + flightNumber).html("<i class='fas fa-heart'></i>");
+}
+
+function buyFlight(flightObj) {
+
+    if(confirm('Are you sure you want to purchase this flight?')) {
+
+        let msg = "Order completed successfully";
+        msg += "Flight number: " + flightObj.flight_number + " \r";
+        msg += "Time: " + flightObj.departure_date +" "+ flightObj.time + " \r";
+        msg += "Departure city: " + flightObj.departure_city + " \r";
+        msg += "Landing city: " + flightObj.landing_city + " \r";
+        msg += "Company name: " + flightObj.company_name + " \r";
+        msg += "Price: " + flightObj.price + " \r";
+        msg += "Stops: " + flightObj.stops + " \r";
+        alert(msg);
+    } 
+}
+
 
 function getAllFlightsByFilter(str) {
     $.ajax({
@@ -43,21 +79,23 @@ function getAllFlightsByFilter(str) {
     });
 }
 
-
 function operationsListeners() {
 
     $("#searchFlights").click(() => {
         const landing_city = $("#inputLanding_city").val();
         const departure_city = $("#inputDeparture_city").val();
         const stops = $("#inputStops").val();
+        const departure_date = $("#inputDeparture_date").val();
         let str = "?";
+        if(departure_date)
+        str += `departure_date=${departure_date}`;
         if(stops)
         str += `stops=${stops}`;
         if(landing_city)
         str += `&landing_city=${landing_city}`;
         if(departure_city)
         str += `&departure_city=${departure_city}`;
-        else if(!stops && !landing_city && !departure_city){
+        else if(!departure_date&&!stops && !landing_city && !departure_city){
             str = "";
         }
         getAllFlightsByFilter(str);
