@@ -2,12 +2,10 @@
 	margin: 0;
 	padding: 0;
 	font-family:cursive;
-
 }
 
 body{
     min-height: 100vh;
-	background: #e8ffff;
 	background: linear-gradient(to top,#a3d8f4, #DACDFF, #FBD9E2, #FFEEC4);
 	overflow-x: hidden;
 }
@@ -21,7 +19,7 @@ h3{
 	font-size: 30px;
 	/* font-size: 200%; */
 }
-
+	
 a{
 	color:#440047;
 }
@@ -65,23 +63,38 @@ header {
 	position:relative;
 	padding-top: 100px;
 }
-/* TODO: fix responsive */
 .bottom-cloud{
 	position:absolute;
 	left: 300px;
 	top:210px;
-
 }
 .top-cloud{
 	position:absolute;
 	right: 300px;
 	top:100px;
-
 }
 
+.cloud{
+    -webkit-animation-name:              fly;    
+    -webkit-animation-duration:          6s;
+    -webkit-animation-iteration-count:   infinite;
+    -webkit-animation-timing-function:   linear;
+    -webkit-transform-origin:            50% 100%;
+}
 
-
-
+@keyframes fly {
+    0%  { -webkit-transform:     translate(2px, 1px) rotate(0deg); }
+    10% { -webkit-transform:     translate(-1px, -2px) rotate(-2deg); }
+    20% { -webkit-transform:     translate(-3px, 0px) rotate(3deg); }
+    30% { -webkit-transform:     translate(0px, 2px) rotate(0deg); }
+    40% { -webkit-transform:     translate(1px, -1px) rotate(1deg); }
+    50% { -webkit-transform:     translate(-1px, 2px) rotate(-1deg); }
+    60% { -webkit-transform:     translate(-3px, 1px) rotate(0deg); }
+    70% { -webkit-transform:     translate(2px, 1px) rotate(-2deg); }
+    80% { -webkit-transform:     translate(-1px, -1px) rotate(4deg); }
+    90% { -webkit-transform:     translate(2px, 2px) rotate(0deg); }
+    100%{ -webkit-transform:     translate(1px, -2px) rotate(-1deg); }
+   }
 
 .table {
 	width: 80vw;
@@ -111,16 +124,24 @@ th {
 }
 
 .input-group {
-	width: 70vw;
+	width: 80vw;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	margin: 0 auto;
 }
 
-
 form{
 	width: 50vw;
 	margin: 0 auto;	
 	margin-bottom: 50px;
 }
+
+.pointer {
+	cursor: pointer;
+}
+
+#left-cloud {
+	margin-top: 100px;
+}
+

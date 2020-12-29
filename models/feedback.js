@@ -7,7 +7,7 @@ const feedbackSchema = new Schema({
     company_name:{type:String, required:true},
     //published_date: { type: Date, default: Date.now, required: true },
     feedback: { type: String, required: true },
-    rating: { type: Number } 
+    rating: { type: Number, min: 1, max: 5 } //TODO: check validation
 }, { collection: 'Feedbacks', strict: false });
 /* Setters */
 

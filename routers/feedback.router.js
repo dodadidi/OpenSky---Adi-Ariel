@@ -5,7 +5,6 @@ const feedbackRouter = new Router();
 
  feedbackRouter.get('/', feedbackDbController.getFeedbacks);
  feedbackRouter.get('/:id', feedbackDbController.getFeedback);
- feedbackRouter.get('/byCompany/:company_name', feedbackDbController. getFeedbackByCompanyName);
  feedbackRouter.post('/', feedbackDbController.addFeedback);
  feedbackRouter.put('/:id', feedbackDbController.updateOneFeedback);
  feedbackRouter.delete('/:id', feedbackDbController.deleteFeedback);
