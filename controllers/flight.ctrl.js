@@ -28,9 +28,16 @@ exports.flightDbController = {
     addFlight(req,res){
         const newFlight = new flight({
             //check, validations
+<<<<<<< HEAD
             "flight_number": req.body.flight_number,
             "departure_date": req.body.departure_date,
             "time": req.body.time,
+=======
+            "id": req.body.id,
+            "flight_number": req.body.flight_number,
+            "departure_date": req.body.departure_date,
+            // "departure_time": req.body.departure_time,
+>>>>>>> 013267fbfae8b823b4831998e9eea025fcc19034
             "departure_city": req.body.departure_city,
             "landing_city":  req.body.landing_city,
             "company_name":  req.body.company_name,
@@ -52,11 +59,25 @@ exports.flightDbController = {
     },
 
     updateFlight(req,res){
+<<<<<<< HEAD
       flight.updateOne({ flight_number: (req.params.flight_number) }, req.body)
       .then(docs => { res.json(docs)})
       .catch(err => console.log(`Error updating flight from db: ${err}`));  
     },
    
+=======
+      flight.updateOne({flight_number:req.params.flight_number},{departure_date:req.body.departure_date,landing_city:req.body.landing_city,company_name:req.body.company_name,price:req.body.price})
+      .then(docs => { res.json(docs)})
+      .catch(err => console.log(`Error updating flight from db: ${err}`));  
+    },
+    // updateFlight(req,res){
+    //     flight.updateOne({id:req.params.id},{
+    //         $set: {...req.body}
+    //     })
+    //     .then(docs => { res.json(docs)})
+    //     .catch(err => console.log(`Error updating flight from db: ${err}`));
+    //   },
+>>>>>>> 013267fbfae8b823b4831998e9eea025fcc19034
   deleteFlight(req,res){
     flight.deleteOne({flight_number:req.params.flight_number})
     .then(docs => { res.json(docs)})

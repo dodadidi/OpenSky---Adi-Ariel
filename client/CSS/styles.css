@@ -137,6 +137,25 @@ form{
 	margin-bottom: 50px;
 }
 
+<<<<<<< HEAD
+=======
+/* *************heart change color - JS*************
+
+.color {
+    color: firebrick;
+}
+
+.heart {
+    position: relative;
+    height: 20px;
+    width: 20px;
+    top: -70px;
+    font-size: 50px;
+    background-color: white;
+    margin: 0 auto;
+} */
+
+>>>>>>> 013267fbfae8b823b4831998e9eea025fcc19034
 .pointer {
 	cursor: pointer;
 }
