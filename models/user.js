@@ -8,11 +8,6 @@ const userSchema = new Schema({
     registration_date: { type: String, required: true},
     like_flights: { type: Array }
 }, { collection: 'Users', strict: false });
-/* Setters */
-
-/* Validate() */
-
-/* Middleware: pre-save */
 
 const User = model('User', userSchema);
 
