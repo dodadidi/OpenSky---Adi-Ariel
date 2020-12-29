@@ -5,13 +5,9 @@ const cors = require('cors');
 const { userRouter } = require("./routers/user.router");
 const { flightRouter } = require("./routers/flight.router");
 const { feedbackRouter } = require("./routers/feedback.router");
-const { get } = require("http");
 
 const app = express();
 const port = process.env.PORT || 3000
-
-
-//const { feedbackRouter } = require("./router");
 
 app.use(cors());
 app.use(express.json());
