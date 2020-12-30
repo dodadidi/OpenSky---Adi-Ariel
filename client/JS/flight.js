@@ -21,7 +21,6 @@ function recreateTable(flights) {
         for (let i = 0; i < flightsLen; i++) {
             let tableRow = "<tr>"
             tableRow += "<td>" + flights[i].flight_number + "</td>";
-            // tableRow += "<td>" + moment(flights[i].departure_date).format('DD/MM/YYYY') + "</td>";
             tableRow += "<td>" + flights[i].departure_date+"</td>";
             tableRow += "<td>" + flights[i].time+"</td>";
             tableRow += "<td>" + flights[i].departure_city + "</td>";
@@ -30,7 +29,6 @@ function recreateTable(flights) {
             tableRow += "<td>" + flights[i].price + "</td>";
             tableRow += "<td>" + flights[i].stops + "</td>";
             tableRow += "<td><a href =./feedbacksList.html>Feedback</a></td>";
-            // tableRow += "<td><a href =./feedbacksList.html?company_name=" + flights[i].company_name + ">Feedback</a></td>";
             tableRow += "<td class='pointer' onclick='buyFlight(" + JSON.stringify(flights[i]) + ")'>Buy</td>";
             tableRow += "<td><span class='pointer' id='like-" + flights[i].flight_number + "' onclick='likeCLicked(" + flights[i].flight_number + ")'><i class='far fa-heart'></i></span></td>"
             tableRow += "</tr>";
@@ -41,14 +39,6 @@ function recreateTable(flights) {
 }
 
 function likeCLicked(flightNumber) {
-
-    //Need to check the status of the like from the DB
-    // if(like) {
-
-    // } else {
-
-    // }
-
     $("#like-" + flightNumber).html("<i class='fas fa-heart'></i>");
 }
 

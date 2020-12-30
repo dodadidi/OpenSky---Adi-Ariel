@@ -13,17 +13,6 @@ function getAllFeedbacks() {
     });
 }
 
-function updateFeedbackById(id, jsonFile) {
-    $.ajax({
-        url: `http://localhost:3000/api/feedbacks/${id}`,
-        type: 'PUT',
-        data: jsonFile,
-        success: function (response) {
-            console.log(response);
-        }
-    });
-}
-
 function recreateTable(feedbacks) {
     $("tbody").empty().remove();
     const feedbacksLen = feedbacks.length;
@@ -50,8 +39,6 @@ function getAllFeedbacksByFilter(str) {
     });
 }
 
-
-
 function cleanUpdateData(data) {
     const obj = data;
     for (var propName in obj) {
@@ -61,7 +48,6 @@ function cleanUpdateData(data) {
       }
     return obj;
 }
-
 
 function operationsListeners() {
 
@@ -77,22 +63,6 @@ function operationsListeners() {
             str = "";
         }
         getAllFeedbacksByFilter(str);
-    });
-
-    $("#updateFeedback").click(() => {
-        const flight_number = $("#inputId").val();
-        const fn = $("#inputFN").val();
-        const ln = $("#inputLN").val();
-        const landing_city = $("#inputEmail").val();
-        const job = $("#inputJob").val();
-        const flightObj = {
-            flight_number,
-            job,
-            landing_city,
-            departure_date: fn,
-            departure_city: ln,
-        }
-        updateFeedbackById(flight_number, cleanUpdateData(flightObj) );
     });
 }
 

@@ -7,7 +7,7 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="CSS/styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />  
-  <title>Flights</title>
+  <title>OpenSky - Flights</title>
 </head>
 <body>
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -25,25 +25,26 @@
                 <a class="nav-link" href="#">Surprise Me</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="feedbacksList.html">Feedbacks </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="#">My Flights </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">My Fav💗rit Flights</a>
+                <a class="nav-link" href="#">My Fav💗rits</a>
             </li>
         </ul>
       </div>
     </div>
   </nav>
-  <header>
-      <div class="top-cloud"><img src="images/cloud.png" alt="cloud-image"></div>
-      <h1>OpenSky</h1>
-      <h3>Find Your Next Trip</h3>
-      <!-- <p>🌤🛫✈🌤🌦⛱😎🌥</p> -->
-      <div class="bottom-cloud"><img src="images/cloud.png" alt="cloud-image"></div>
-    <div class="back">
-      <a href="./index.html"><br>&larr; Back</a>
+  <header class="d-flex justify-content-center">
+    <div id="left-cloud" class="cloud"><img src="images/cloud.png" alt="cloud-image">    </div>
+    <div>
+        <h1>OpenSky</h1>
+        <h3>Find Your Next Trip</h3>
     </div>
-  </header>
+    <div class="cloud"><img src="images/cloud.png" alt="cloud-image"></div>
+</header>
   <main>
     <form>
       <fieldset class="form-group">
@@ -99,6 +100,8 @@
       </tbody>
     </table>
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
   <script src="JS/flight.js"></script>

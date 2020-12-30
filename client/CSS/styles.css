@@ -137,22 +137,6 @@ form{
 	margin-bottom: 50px;
 }
 
-/* *************heart change color - JS*************
-
-.color {
-    color: firebrick;
-}
-
-.heart {
-    position: relative;
-    height: 20px;
-    width: 20px;
-    top: -70px;
-    font-size: 50px;
-    background-color: white;
-    margin: 0 auto;
-} */
-
 .pointer {
 	cursor: pointer;
 }
