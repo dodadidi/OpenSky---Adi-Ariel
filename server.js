@@ -5,6 +5,7 @@ const cors = require('cors');
 const { userRouter } = require("./routers/user.router");
 const { flightRouter } = require("./routers/flight.router");
 const { feedbackRouter } = require("./routers/feedback.router");
+const { weatherRouter } = require("./routers/weather.router");
 
 const app = express();
 const port = process.env.PORT || 3000
@@ -18,6 +19,7 @@ const router = express.Router();
 app.use('/api/users', userRouter);
 app.use('/api/flights', flightRouter);
 app.use('/api/feedbacks', feedbackRouter);
+app.use('/api/weathers', weatherRouter);
 
 app.use((req,res,next)=>{
     res.header('Access-Control-Allow-Origin', '*');
