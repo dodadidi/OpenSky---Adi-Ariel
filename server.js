@@ -27,6 +27,15 @@ app.use((req,res,next)=>{
     res.set('Content-Type','application/json');
     next();
 });
+ 
+app.get("/", (req,res) => {
+    res.status(200).send(`Welcome to OpenSky`);
+});
+
+app.get("*", (req, res) => {
+    res.status(404).send(`Page Not Found`);
+});
+
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something is broken!');
