@@ -6,9 +6,13 @@ const { userRouter } = require("./routers/user.router");
 const { flightRouter } = require("./routers/flight.router");
 const { feedbackRouter } = require("./routers/feedback.router");
 const { weatherRouter } = require("./routers/weather.router");
+const { authRouter  } = require("./routers/auth.router");
+const passportSetup = require("./config/passport-setup");
+
 
 const app = express();
 const port = process.env.PORT || 3000
+app.set('view engine', 'ejs');
 
 app.use(cors());
 app.use(express.json());
@@ -20,6 +24,8 @@ app.use('/api/users', userRouter);
 app.use('/api/flights', flightRouter);
 app.use('/api/feedbacks', feedbackRouter);
 app.use('/api/weathers', weatherRouter);
+app.use('/auth', authRouter);
+
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -40,5 +46,7 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something is broken!');
 });
+
+
 
 app.listen(port, () => console.log('Express server is running on port ', port));
