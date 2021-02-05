@@ -23,7 +23,8 @@ authRouter.get('/google', passport.authenticate('google', {
 // hand control to passport to use code to grab profile info
 authRouter.get('/google/redirect', passport.authenticate('google', {scope: ['profile']}), (req, res) => {
 //authRouter.get('/google/redirect', passport.authenticate('google'), (req, res) => {
-    res.send('you reached the redirect URI');
+    res.send(req.user);
+    //////////////To profile user page/////////////
 });
 
 module.exports = {authRouter}

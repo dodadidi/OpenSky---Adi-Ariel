@@ -8,11 +8,23 @@ const { feedbackRouter } = require("./routers/feedback.router");
 const { weatherRouter } = require("./routers/weather.router");
 const { authRouter  } = require("./routers/auth.router");
 const passportSetup = require("./config/passport-setup");
+const passport = require('passport');
+const cookieSession = require('cookie-session');
+const keys=require('./config/keys');
 
 
 const app = express();
 const port = process.env.PORT || 3000
 app.set('view engine', 'ejs');
+// set up session cookies
+app.use(cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [keys.session.cookieKey]
+}));
+
+// initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(cors());
 app.use(express.json());
