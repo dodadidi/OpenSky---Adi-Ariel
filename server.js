@@ -14,7 +14,7 @@ const keys=require('./config/keys');
 
 
 const app = express();
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 8080 //3000
 app.set('view engine', 'ejs');
 // set up session cookies
 app.use(cookieSession({
