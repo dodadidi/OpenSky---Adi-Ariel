@@ -1,26 +1,24 @@
 const flight = require('../models/flight');
 
+function convertToObject(filterBy) {
+    const criteria = {}
+    if (filterBy.departure_city) {
+        criteria.departure_city = new RegExp(filterBy.departure_city, 'ig');
+    }
+    if (filterBy.landing_city) {
+        criteria.landing_city = new RegExp(filterBy.landing_city, 'ig');
+    }
+    if (filterBy.stops) {
+        criteria.stops = filterBy.stops;
+    }
+    return criteria;
+}
+
 exports.flightDbController = {
     getFlights(req, res) {
-        const keys = Object.keys(req.query);
+        const obj = convertToObject(req.query)
         const findFlights = flight.find({});
-        for (let i = 0; i < keys.length; i++) {
-            if (keys[i] == 'departure_date') {
-                findFlights.find({ departure_date: req.query.departure_date });
-            }
-            else if (keys[i] == 'departure_city') {
-                findFlights.find({ departure_city: req.query.departure_city });
-            }
-            else if (keys[i] == 'landing_city') {
-                findFlights.find({ landing_city: req.query.landing_city });
-            }
-            else if (keys[i] == 'stops') {
-                findFlights.find({ stops: { $lte: req.query.stops } });
-            }
-
-            else { res.status(404).send("Error: wrong key"); }
-        }
-        findFlights.find({})
+        findFlights.find(obj)
             .then(docs => { res.json(docs) })
             .catch(err => console.log(`Error getting the data from db: ${err}`));
     },

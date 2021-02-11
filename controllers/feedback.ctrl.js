@@ -13,20 +13,24 @@ function getTodayDate() {
     return `${month}/${day}/${year}`;
 }
 
+function convertToObject(filterBy) {
+    const criteria = {}
+    if (filterBy.company_name) {
+        criteria.company_name = new RegExp(filterBy.company_name, 'ig');
+    }
+
+    if (filterBy.rating) {
+        criteria.rating = filterBy.rating;
+    }
+    return criteria;
+}
+
+
 exports.feedbackDbController = {
     getFeedbacks(req, res) {
-        const keys = Object.keys(req.query);
-        const findFeedbacks = feedback.find({});
-        for (let i = 0; i < keys.length; i++) {
-            if (keys[i] == 'company_name') {
-                findFeedbacks.find({ company_name: req.query.company_name });
-            }
-            else if (keys[i] == 'published_date') {
-                findFeedbacks.find({ published_date: req.query.published_date });
-            }
-            else { res.status(404).send("Error: wrong key"); }
-        }
-        findFeedbacks.find({})
+        const obj = convertToObject(req.query)
+        const findFeedbacks = feedback.find();
+        findFeedbacks.find(obj)
             .then(docs => { res.json(docs) })
             .catch(err => console.log(`Error getting the data from db: ${err}`));
     },
@@ -66,5 +70,4 @@ exports.feedbackDbController = {
             .catch(err => console.log(`Error deleting feedback from db: ${err}`));
     }
 }
-
 
