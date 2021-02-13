@@ -7,22 +7,25 @@ exports.userDbController = {
             .then(docs => { res.json(docs) })
             .catch(err => console.log(`Error getting the data from db: ${err}`));
     },
+    
     async addUser(req, res) {
         const temp = await user.findOne({}).sort({ id: -1 }).limit(1);
         let id = temp.id;
         const newUser = new user({
             "id": id + 1,
+            "admin": false,
             "first_name": req.body.first_name,
             "last_name": req.body.last_name,
-            "email": req.body.email,
-            "registration_date": req.body.registration_date,
+            "username": req.body.username,
+            //"registration_date": req.body.registration_date,
             "like_flights": req.body.like_flights
         });
         newUser.save()
             .then(docs => { res.json(docs) })
             .catch(err => console.log(`Error deleting user from db: ${err}`));
-
+        
     },
+    
     getUser(req, res) {
         const id = req.params.id;
         user.findOne({ id: id })

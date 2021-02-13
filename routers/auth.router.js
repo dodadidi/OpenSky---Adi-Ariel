@@ -1,77 +1,53 @@
 const passport = require('passport')
-const { Router } = require ('express' );
+const { Router } = require('express');
 //const passportSetup = require('../config/passport-setup');
 const authRouter = new Router();
+const CLIENT_HOME_PAGE_URL = "http://localhost:3000";
 
-// auth login
-authRouter.get('/login', (req, res) => {
-    res.render('login', { user: req.user });
+// when login is successful, retrieve user info
+authRouter.get("/login/success", (req, res) => {
+    if (req.user) {
+        res.json({
+            success: true,
+            message: "user has successfully authenticated",
+            user: req.user,
+            cookies: req.cookies
+        });
+    }
 });
 
-// auth logout
-authRouter.get('/logout', (req, res) => {
-    // handle with passport
-    res.send('logging out');
+// when login failed, send failed msg
+authRouter.get("/login/failed", (req, res) => {
+    res.status(401).json({
+        success: false,
+        message: "user failed to authenticate."
+    });
+});
+
+// When logout, redirect to client
+authRouter.get("/logout", (req, res) => {
+    req.logout();
+    res.redirect(CLIENT_HOME_PAGE_URL);
 });
 
 // auth with google+
-authRouter.get('/google', passport.authenticate('google', {
-    scope: ['profile']
-}));
+authRouter.get("/google", passport.authenticate("google",  {scope: 'https://www.googleapis.com/auth/plus.login'}));
+//authRouter.get('/google', passport.authenticate('google'));
 
 // callback route for google to redirect to
 // hand control to passport to use code to grab profile info
+/*
 authRouter.get('/google/redirect', passport.authenticate('google', {scope: ['profile']}), (req, res) => {
 //authRouter.get('/google/redirect', passport.authenticate('google'), (req, res) => {
     res.send(req.user);
     //////////////To profile user page/////////////
 });
-
-module.exports = {authRouter}
-
-
-
-
-
-/*
-const { Router } = require('express');
-const passportSetup = require('../config/passport-setup');
-const passport = require('passport');
-const authRouter = new Router();
-
-app.get('/auth/google',
-  passport.authenticate('google', { scope: ['profile'] }));
-
-app.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login' }),
-  function (req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-  });
 */
-/*
-// auth login
-authRouter.get('/login', (req, res) => {
-    res.render('login', { user: req.user });
-});
+authRouter.get("/google/redirect",
+    passport.authenticate("google", {
+        successRedirect: CLIENT_HOME_PAGE_URL,
+        failureRedirect: "/auth/login/failed"
+    })
+);
 
-// auth logout
-authRouter.get('/logout', (req, res) => {
-    // handle with passport
-    res.send('logging out');
-});
-
-// auth with google+
-authRouter.get('/google', passport.authenticate('google', {
-    scope: ['profile']
-}));
-
-// callback route for google to redirect to
-// hand control to passport to use code to grab profile info
-authRouter.get('/google/redirect', passport.authenticate('google'), (req, res) => {
-    res.send('you reached the redirect URI');
-});
-
-module.exports = { authRouter };
-
-*/
+module.exports = { authRouter }
