@@ -11,6 +11,7 @@ const userSchema = new Schema({
     googleId: {type: String, required: true },
     like_flights: { type: Array },
     picture: {type: String },
+    buy_flights: { type: Array },
 }, { collection: 'Users', strict: false });
 
 //userSchema.pre('save', function(next) {
