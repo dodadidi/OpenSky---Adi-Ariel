@@ -44,7 +44,7 @@ const router = express.Router();
 app.use('/api/users', userRouter);
 app.use('/api/flights', flightRouter);
 app.use('/api/feedbacks', feedbackRouter);
-app.use('/api/weathers', weatherRouter);
+app.use('/api/weather', weatherRouter);
 
 app.use('/auth', authRouter);
 
