@@ -9,10 +9,10 @@ const flightSchema = new Schema({
     company_name: { type: String, required: true },
     price: { type: String, required: true },
     stops: { type: Number, required: true },
-    surpriseMe: { type: Boolean, required: true },
-    buyer_id: { type: Number },
-    new_price: {type: Number},
-    Liked: {type: Boolean}
+    // surpriseMe: { type: Boolean, required: true },
+    // buyer_id: { type: Number },
+    // new_price: {type: Number},
+    // Liked: {type: Boolean}
 }, { collection: 'Flights', strict: false });
 
 const Flight = model('Flight', flightSchema);
