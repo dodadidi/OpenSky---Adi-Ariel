@@ -35,9 +35,9 @@ authRouter.get("/google", passport.authenticate("google",  {scope: 'https://www.
 // callback route for google to redirect to
 authRouter.get("/google/redirect",
     passport.authenticate("google", {
-        //successRedirect: CLIENT_HOME_PAGE_URL,
+        successRedirect: CLIENT_HOME_PAGE_URL,
         failureRedirect: "/auth/login/failed"
-    },(req, res) => { return res.redirect("/")})
+    })
 );
 
 module.exports = { authRouter }
