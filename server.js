@@ -12,7 +12,6 @@ const { authRouter  } = require("./routers/auth.router");
 const passport = require('passport');
 const passportSetup = require("./config/passport-setup");
 const cookieSession = require('cookie-session');
-// const keys=require('./config/keys');
 const {COOKIE_KEY} = require('./constants')
 const cookieParser = require("cookie-parser");
 
@@ -37,7 +36,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(cors({
-    origin: "pedantic-goldwasser-57a322.netlify.app",
+    origin: "https://pedantic-goldwasser-57a322.netlify.app",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true //
 }));
