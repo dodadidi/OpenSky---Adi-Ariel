@@ -9,15 +9,12 @@ exports.userDbController = {
     },
     
     async addUser(req, res) {
-        //const temp = await user.findOne({}).sort({ googleId: -1 }).limit(1);
-        //let googleId = temp.googleId;
         const newUser = new user({
             "googleId": req.body.googleId,
             "admin": false,
             "first_name": req.body.first_name,
             "last_name": req.body.last_name,
             "username": req.body.username,
-            //"registration_date": req.body.registration_date,
             "like_flights": req.body.like_flights
         });
         newUser.save()

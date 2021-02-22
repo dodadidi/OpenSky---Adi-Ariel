@@ -19,6 +19,9 @@ function convertToObject(filterBy) {
         criteria.company_name = new RegExp(filterBy.company_name, 'ig');
     }
 
+    if (filterBy.published_date) {
+        criteria.published_date = new RegExp(filterBy.published_date, 'ig');
+    }
     if (filterBy.rating) {
         criteria.rating = filterBy.rating;
     }
@@ -29,6 +32,7 @@ function convertToObject(filterBy) {
 exports.feedbackDbController = {
     getFeedbacks(req, res) {
         const obj = convertToObject(req.query)
+        console.log('obj',obj);
         const findFeedbacks = feedback.find();
         findFeedbacks.find(obj)
             .then(docs => { res.json(docs) })
