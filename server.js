@@ -9,10 +9,11 @@ const { flightRouter } = require("./routers/flight.router");
 const { feedbackRouter } = require("./routers/feedback.router");
 const { weatherRouter } = require("./routers/weather.router");
 const { authRouter  } = require("./routers/auth.router");
-const passportSetup = require("./config/passport-setup");
 const passport = require('passport');
+const passportSetup = require("./config/passport-setup");
 const cookieSession = require('cookie-session');
-const keys=require('./config/keys');
+// const keys=require('./config/keys');
+const {COOKIE_KEY} = require('./constants')
 const cookieParser = require("cookie-parser");
 
 const app = express();
@@ -26,7 +27,7 @@ app.use(logger('dev'));
 // set up session cookies
 app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
-    keys: [keys.session.cookieKey]
+    keys: [COOKIE_KEY]
 }));
 
 app.use(cookieParser());
