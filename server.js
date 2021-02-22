@@ -36,7 +36,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(cors({
-    origin: "http://localhost:3000", // allow to server to accept request from different origin
+    origin: "pedantic-goldwasser-57a322.netlify.app",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true //
 }));
