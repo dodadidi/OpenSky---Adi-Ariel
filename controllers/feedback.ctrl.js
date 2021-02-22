@@ -32,7 +32,6 @@ function convertToObject(filterBy) {
 exports.feedbackDbController = {
     getFeedbacks(req, res) {
         const obj = convertToObject(req.query)
-        console.log('obj',obj);
         const findFeedbacks = feedback.find();
         findFeedbacks.find(obj)
             .then(docs => { res.json(docs) })

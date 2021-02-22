@@ -23,7 +23,6 @@ function convertToObject(filterBy) {
 exports.flightDbController = {
     getFlights(req, res) {
         const obj = convertToObject(req.query)
-        console.log('server!!',obj);
         const findFlights = flight.find({});
         findFlights.find(obj)
             .then(docs => { res.json(docs) })
