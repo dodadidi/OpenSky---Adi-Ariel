@@ -18,7 +18,7 @@ passport.use(
     new GoogleStrategy({
         clientID: CLIENT_ID,
         clientSecret: CLIENT_SECRET,
-        callbackURL: '/auth/google/redirect'
+        callbackURL: 'https://opensky12345.herokuapp.com/auth/google/redirect'
         //proxy: true
     },  (accessToken, refreshToken, profile, done) => {
         // check if user already exists in our own db
