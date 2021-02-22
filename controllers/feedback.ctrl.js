@@ -68,7 +68,6 @@ exports.feedbackDbController = {
     },
 
     deleteFeedback(req, res) {
-        //feedback.deleteMany({id:{$in: [1,3,5,7,9]}})
         feedback.findOneAndDelete({ id: parseInt(req.params.id) })
             .then(docs => { res.json(docs) }, console.log(`Feedback deleted`))
             .catch(err => console.log(`Error deleting feedback from db: ${err}`));

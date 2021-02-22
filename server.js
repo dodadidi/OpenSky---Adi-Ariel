@@ -1,22 +1,27 @@
 const express = require("express");
 const logger = require("morgan");
 const cors = require('cors');
+const logs = require('./logs');
+const fs = require('fs');
 
 const { userRouter } = require("./routers/user.router");
 const { flightRouter } = require("./routers/flight.router");
 const { feedbackRouter } = require("./routers/feedback.router");
 const { weatherRouter } = require("./routers/weather.router");
 const { authRouter  } = require("./routers/auth.router");
-//const { profileRoutes } = require("./routers/profile-routes");
 const passportSetup = require("./config/passport-setup");
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 const keys=require('./config/keys');
-const cookieParser = require("cookie-parser"); // parse cookie header
-
+const cookieParser = require("cookie-parser");
 
 const app = express();
-const port = process.env.PORT || 8080 //3000
+const port = process.env.PORT || 8080 
+
+app.use(logger('combined', {
+  stream: fs.createWriteStream('./logs.txt', {flags: 'a'})
+}));
+app.use(logger('dev'));
 
 // set up session cookies
 app.use(cookieSession({
@@ -25,7 +30,6 @@ app.use(cookieSession({
 }));
 
 app.use(cookieParser());
-
 
 // initialize passport
 app.use(passport.initialize());

@@ -1,6 +1,5 @@
 const passport = require('passport')
 const { Router } = require('express');
-//const passportSetup = require('../config/passport-setup');
 const authRouter = new Router();
 const CLIENT_HOME_PAGE_URL = "http://localhost:3000";
 
@@ -32,17 +31,8 @@ authRouter.get("/logout", (req, res) => {
 
 // auth with google+
 authRouter.get("/google", passport.authenticate("google",  {scope: 'https://www.googleapis.com/auth/plus.login'}));
-//authRouter.get('/google', passport.authenticate('google'));
 
 // callback route for google to redirect to
-// hand control to passport to use code to grab profile info
-/*
-authRouter.get('/google/redirect', passport.authenticate('google', {scope: ['profile']}), (req, res) => {
-//authRouter.get('/google/redirect', passport.authenticate('google'), (req, res) => {
-    res.send(req.user);
-    //////////////To profile user page/////////////
-});
-*/
 authRouter.get("/google/redirect",
     passport.authenticate("google", {
         successRedirect: CLIENT_HOME_PAGE_URL,

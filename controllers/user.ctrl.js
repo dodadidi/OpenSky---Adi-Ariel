@@ -15,7 +15,9 @@ exports.userDbController = {
             "first_name": req.body.first_name,
             "last_name": req.body.last_name,
             "username": req.body.username,
-            "like_flights": req.body.like_flights
+            "like_flights": req.body.like_flights,
+            "picture": req.body.picture,
+            "buy_flights": req.body.buy_flights
         });
         newUser.save()
             .then(docs => { res.json(docs) })
