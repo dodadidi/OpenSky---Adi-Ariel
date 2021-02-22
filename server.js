@@ -1,6 +1,6 @@
 const express = require("express");
 const logger = require("morgan");
-// const cors = require('cors');
+const cors = require('cors');
 const logs = require('./logs');
 const fs = require('fs');
 
@@ -41,7 +41,7 @@ app.use(passport.session());
 //   credentials: true //
 // }
 
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(logger("dev"));
