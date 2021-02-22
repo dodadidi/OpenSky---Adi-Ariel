@@ -35,11 +35,13 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(cors({
-    origin: "https://pedantic-goldwasser-57a322.netlify.app",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true //
-}));
+// {
+//   origin: "https://pedantic-goldwasser-57a322.netlify.app",
+//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//   credentials: true //
+// }
+
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(logger("dev"));
