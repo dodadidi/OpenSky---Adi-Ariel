@@ -62,8 +62,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(nocache());
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
