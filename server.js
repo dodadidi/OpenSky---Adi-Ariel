@@ -35,18 +35,20 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
- app.use(cors())
-//app.use(cors({
- // origin: ['https://opensky01.netlify.app',"http://http://localhost:3000"],
+//  app.use(cors())
+app.use(cors({
+ origin: ['https://opensky01.netlify.app',"http://http://localhost:3000"],
   // origin: ["https://opensky01.netlify.app","https://opensky01.netlify.app/#/","http://localhost:3000"],
- // methods: ["GET", "PUT", "POST","DELETE", "OPTIONS"],
- // credentials: true, 
- // preflightContinue: true
-//}));
+ methods: ["GET", "PUT", "POST","DELETE", "OPTIONS"],
+ credentials: true, 
+ preflightContinue: true
+}));
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'https://opensky01.netlify.app');
     res.header('Access-Control-Allow-Headers', `Origin, X-Requested-With, Content-Type, Accept`,);
+    res.header('Access-Control-Allow-Mehods', 'GET', 'PUT', 'POST', 'DELETE', 'OPTIONS');
+    res.header('Access-Control-Allow-Credentials', true);
     res.set('Content-Type', 'application/json');
     next();
 });
