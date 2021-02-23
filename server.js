@@ -35,14 +35,13 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(cors())
-// app.use(cors({
-//   origin: ["https://pedantic-goldwasser-57a322.netlify.app","https://pedantic-goldwasser-57a322.netlify.app/#/","http://localhost:3000"],
-//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//   credentials: true, //
-//   preflightContinue: true
-
-// }));
+// app.use(cors())
+app.use(cors({
+  origin: ["https://pedantic-goldwasser-57a322.netlify.app","https://pedantic-goldwasser-57a322.netlify.app/#/","http://localhost:3000"],
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS",
+  credentials: true, //
+  preflightContinue: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(logger("dev"));
