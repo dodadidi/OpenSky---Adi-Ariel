@@ -23,10 +23,32 @@ app.use(logger('combined', {
 }));
 app.use(logger('dev'));
 
+//  app.use(cors())
+// app.use(cors({
+//  origin: ['https://opensky01.netlify.app',"http://http://localhost:3000"],
+//   // origin: ["https://opensky01.netlify.app","https://opensky01.netlify.app/#/","http://localhost:3000"],
+//  methods: ["GET", "PUT", "POST","DELETE", "OPTIONS"],
+//  credentials: true, 
+//  preflightContinue: true
+// }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
+app.use(logger("dev"));
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Mehods', 'GET', 'PUT', 'POST', 'DELETE', 'HEAD', 'OPTIONS');
+    res.header('Access-Control-Allow-Headers', 
+      'Origin, X-Requested-With, Content-Type, Accept');
+    //res.header('Access-Control-Allow-Credentials', true);
+    res.set('Content-Type', 'application/json');
+    next();
+});
+
 // set up session cookies
 app.use(cookieSession({
-    maxAge: 24 * 60 * 60 * 1000,
-    keys: [COOKIE_KEY]
+  maxAge: 24 * 60 * 60 * 1000,
+  keys: [COOKIE_KEY]
 }));
 
 app.use(cookieParser());
@@ -34,27 +56,6 @@ app.use(cookieParser());
 // initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
-
-//  app.use(cors())
-app.use(cors({
- origin: ['https://opensky01.netlify.app',"http://http://localhost:3000"],
-  // origin: ["https://opensky01.netlify.app","https://opensky01.netlify.app/#/","http://localhost:3000"],
- methods: ["GET", "PUT", "POST","DELETE", "OPTIONS"],
- credentials: true, 
- preflightContinue: true
-}));
-
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://opensky01.netlify.app');
-    res.header('Access-Control-Allow-Headers', `Origin, X-Requested-With, Content-Type, Accept`,);
-    res.header('Access-Control-Allow-Mehods', 'GET', 'PUT', 'POST', 'DELETE', 'OPTIONS');
-    res.header('Access-Control-Allow-Credentials', true);
-    res.set('Content-Type', 'application/json');
-    next();
-});
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
-app.use(logger("dev"));
 
 const router = express.Router();
 app.use('/users', userRouter);
