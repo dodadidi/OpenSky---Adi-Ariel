@@ -36,7 +36,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(cors({
-  origin: ["https://pedantic-goldwasser-57a322.netlify.app","http://localhost:3000"],
+  origin:(origin, cb) => {
+      console.log("origin", origin);
+      cb(null, true)
+  }, //["https://pedantic-goldwasser-57a322.netlify.app","http://localhost:3000"],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true, //
   preflightContinue: true
