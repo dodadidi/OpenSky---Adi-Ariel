@@ -5,10 +5,12 @@ const {CLIENT_ID, CLIENT_SECRET} = require('../constants');
 const User = require('../models/user');
 
 passport.serializeUser((user, done) => {
+    console.log(user);
     done(null, user._id);
 });
 
 passport.deserializeUser((_id, done) => {
+    console.log(_id);
     User.findById(_id).then((user) => {
         done(null, user);
     });
@@ -29,14 +31,15 @@ passport.use(
                 done(null, currentUser);
             } else {
                 // if not, create user in our db
-                new User({
+                const newUser = new User({
                     googleId: profile.id,
                     admin: "false",
                     username: profile.displayName,
                     first_name: profile.name.givenName,
                     last_name: profile.name.familyName,
                     picture: profile._json.picture
-                }).save().then((newUser) => {
+                })
+                newUser.save().then((newUser) => {
                     console.log('created new user: ', newUser);
                     done(null, newUser);
                 });
