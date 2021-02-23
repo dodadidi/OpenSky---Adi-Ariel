@@ -7,13 +7,11 @@ const CLIENT_HOME_PAGE_URL = "https://pedantic-goldwasser-57a322.netlify.app";
 // when login is successful, retrieve user info
 authRouter.get("/login/success", (req, res) => {
     if (req.user) {
-        res.cookie('user', JSON.stringify(req.user));
-        return res.redirect(CLIENT_HOME_PAGE_URL);
-        // return res.json({
-        //     success: true,
-        //     message: "user has successfully authenticated",
-        //     user: req.user
-        // });
+        return res.json({
+            success: true,
+            message: "user has successfully authenticated",
+            user: req.user
+        });
     }
 });
 
@@ -37,7 +35,7 @@ authRouter.get("/google", passport.authenticate("google",  {scope: 'https://www.
 // callback route for google to redirect to
 authRouter.get("/google/redirect",
     passport.authenticate("google", {
-        successRedirect: "/auth/login/success",
+        successRedirect: CLIENT_HOME_PAGE_URL,
         failureRedirect: "/auth/login/failed"
     })
 );
