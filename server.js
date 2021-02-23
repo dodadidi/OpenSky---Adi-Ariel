@@ -35,32 +35,32 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(cors())
-// app.use(cors({
-//   origin: 'https://6034b828762750d4b719a05d--pedantic-goldwasser-57a322.netlify.app',
-//   // origin: ["https://pedantic-goldwasser-57a322.netlify.app","https://pedantic-goldwasser-57a322.netlify.app/#/","http://localhost:3000"],
-//   methods: ["GET","HEAD","PUT","PATCH","POST","DELETE","OPTIONS"],
-//   credentials: true, //
-//   preflightContinue: true
-// }));
+// app.use(cors())
+app.use(cors({
+  origin: ['https://pedantic-goldwasser-57a322.netlify.app',"http://localhost:3000"],
+  // origin: ["https://pedantic-goldwasser-57a322.netlify.app","https://pedantic-goldwasser-57a322.netlify.app/#/","http://localhost:3000"],
+  methods: ["GET","HEAD","PUT","PATCH","POST","DELETE","OPTIONS"],
+  credentials: true, //
+  preflightContinue: true
+}));
 
-app.use((req, res, next) => {
-  res.header(
-    'Access-Control-Allow-Origin',
-    'https://6034b828762750d4b719a05d--pedantic-goldwasser-57a322.netlify.app'
-  );
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  );
-  res.header(
-    'Access-Control-Allow-Methods',
-    'GET, POST, OPTIONS, PUT, PATCH, DELETE'
-  );
-  res.header('Access-Control-Allow-Credentials', true);
-  res.set('Content-Type', 'application/json');
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header(
+//     'Access-Control-Allow-Origin',
+//     'https://6034b828762750d4b719a05d--pedantic-goldwasser-57a322.netlify.app'
+//   );
+//   res.header(
+//     'Access-Control-Allow-Headers',
+//     'Origin, X-Requested-With, Content-Type, Accept'
+//   );
+//   res.header(
+//     'Access-Control-Allow-Methods',
+//     'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+//   );
+//   res.header('Access-Control-Allow-Credentials', true);
+//   res.set('Content-Type', 'application/json');
+//   next();
+// });
 
 
 app.use(express.json());

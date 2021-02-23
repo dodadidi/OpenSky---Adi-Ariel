@@ -2,16 +2,16 @@ const passport = require('passport')
 const { Router } = require('express');
 const { CLIENT_ID } = require('../constants');
 const authRouter = new Router();
-const CLIENT_HOME_PAGE_URL = "https://6034b828762750d4b719a05d--pedantic-goldwasser-57a322.netlify.app";
+const CLIENT_HOME_PAGE_URL = "https://pedantic-goldwasser-57a322.netlify.app";
 // const CLIENT_HOME_PAGE_URL = "http://localhost:3000";
 
 // when login is successful, retrieve user info
 authRouter.get("/login/success", (req, res) => {
-    if (req.user) {
+    if (req.currentUser) {
         return res.json({
             success: true,
             message: "user has successfully authenticated",
-            user: req.user
+            user: req.currentUser
         });
     }
 });

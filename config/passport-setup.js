@@ -28,6 +28,7 @@ passport.use(
             if(currentUser){
                 // already have this user
                 console.log('user is: ', currentUser);
+                req.cuurentUser = currentUser;
                 done(null, currentUser);
             } else {
                 // if not, create user in our db
@@ -39,8 +40,9 @@ passport.use(
                     last_name: profile.name.familyName,
                     picture: profile._json.picture
                 })
-                newUser.save().then((newUser) => {
+                newUser.save().then(() => {
                     console.log('created new user: ', newUser);
+                    req.cuurentUser = newUser;
                     done(null, newUser);
                 });
             }
