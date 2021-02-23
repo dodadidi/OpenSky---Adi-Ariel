@@ -36,10 +36,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(cors({
-  origin:(origin, cb) => {
-      console.log("origin", origin);
-      cb(null, true)
-  }, //["https://pedantic-goldwasser-57a322.netlify.app","http://localhost:3000"],
+  origin: ["https://pedantic-goldwasser-57a322.netlify.app","http://localhost:3000"],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true, //
   preflightContinue: true
@@ -50,10 +47,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use(logger("dev"));
 
 const router = express.Router();
-app.use('/api/users', userRouter);
-app.use('/api/flights', flightRouter);
-app.use('/api/feedbacks', feedbackRouter);
-app.use('/api/weather', weatherRouter);
+app.use('/users', userRouter);
+app.use('/flights', flightRouter);
+app.use('/feedbacks', feedbackRouter);
+app.use('/weather', weatherRouter);
 
 app.use('/auth', authRouter);
 
